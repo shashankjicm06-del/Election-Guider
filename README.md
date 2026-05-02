@@ -1,4 +1,4 @@
- Indian Election Assistant - Election Guider
+#### Indian Election Assistant - Election Guider
 
 🇮🇳 **A Comprehensive Voter Information & Election Guidance Platform**
 
