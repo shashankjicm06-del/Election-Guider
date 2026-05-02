@@ -165,7 +165,7 @@ GitHub: @shashankjicm06-del
 Last Updated: 2026-05-02 09:09:28
 Empowering Indian voters with knowledge and technology 🇮🇳✨
 
-##Architecture##
+###Architecture
 ┌─────────────────────────────────────────────────────────────────┐
 │                        USER INTERFACE                            │
 │  ┌──────────────┬──────────────┬──────────────┬──────────────┐  │
