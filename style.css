@@ -1,0 +1,256 @@
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Typing Indicator Animation */
+.typing-indicator span {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: #9ca3af;
+    border-radius: 50%;
+    margin: 0 2px;
+    animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.typing-indicator span:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+}
+
+/* Markdown parsing basic styles for bot messages */
+.bot-message-content p {
+    margin-bottom: 0.5rem;
+}
+
+.bot-message-content p:last-child {
+    margin-bottom: 0;
+}
+
+.bot-message-content ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.bot-message-content ol {
+    list-style-type: decimal;
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.bot-message-content strong {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+/* Modal Transitions */
+.modal-show {
+    display: flex !important;
+    opacity: 1 !important;
+}
+
+.modal-show>div {
+    transform: scale(1) !important;
+}
+
+/* Flashcard 3D Flip Effects */
+.perspective-1000 {
+    perspective: 1000px;
+}
+
+.transform-style-3d {
+    transform-style: preserve-3d;
+}
+
+.backface-hidden {
+    backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+    transform: rotateY(180deg);
+}
+
+.flip-card-inner {
+    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Glassmorphism utility */
+.glass {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Custom gradients for the professional theme */
+.bg-gradient-india {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+}
+
+.text-gradient-saffron {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(to right, #f97316, #ea580c);
+}
+
+/* Flashcard Hover Preview */
+.fc-hover-group {
+    position: relative;
+}
+
+.fc-hover-preview {
+    position: absolute;
+    left: calc(100% + 16px);
+    top: 50%;
+    transform: translateY(-50%) translateX(-10px);
+    width: 230px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 100;
+}
+
+.fc-hover-group:hover .fc-hover-preview {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(-50%) translateX(0);
+}
+
+/* Arrow pointing left back to sidebar */
+.fc-preview-arrow {
+    position: absolute;
+    left: -7px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid rgba(79, 46, 229, 0.85);
+}
+
+.fc-preview-inner {
+    background: linear-gradient(145deg, rgba(30, 27, 75, 0.96), rgba(79, 46, 229, 0.88));
+    border: 1px solid rgba(165, 180, 252, 0.2);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 20px 60px rgba(79, 46, 229, 0.4), 0 4px 16px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(16px);
+}
+
+/* Mini 3D flip card inside hover preview */
+.fc-mini-card {
+    width: 100%;
+    height: 130px;
+    perspective: 600px;
+    cursor: pointer;
+    margin-bottom: 4px;
+}
+
+.fc-mini-card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+    border-radius: 12px;
+}
+
+.fc-mini-card:hover .fc-mini-card-inner {
+    transform: rotateY(180deg);
+}
+
+.fc-mini-front,
+.fc-mini-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+}
+
+.fc-mini-front {
+    background: linear-gradient(145deg, #312e81, #4f46e5);
+    border: 1px solid rgba(165, 180, 252, 0.15);
+}
+
+.fc-mini-back {
+    background: linear-gradient(145deg, #5b21b6, #7c3aed);
+    border: 1px solid rgba(196, 181, 253, 0.15);
+    transform: rotateY(180deg);
+}
+
+@keyframes flashcardSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(60px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes flashcardFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.flashcard-modal-enter {
+    animation: flashcardSlideUp 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.flashcard-modal-exit {
+    animation: flashcardSlideUp 0.25s cubic-bezier(0.4, 0, 1, 1) reverse forwards;
+}
+
+#flashcardModal.fc-visible {
+    animation: flashcardFadeIn 0.3s ease forwards;
+}
