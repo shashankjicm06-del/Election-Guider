@@ -1,236 +1,166 @@
-<!DOCTYPE html>
-<html lang="en">
+ Indian Election Assistant - Election Guider
 
-<head>
-    <meta charset="UTF-8">
-    <title>ElectionGuide AI</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+🇮🇳 **A Comprehensive Voter Information & Election Guidance Platform**
 
-    <style>
-        body {
-            font-family: Arial;
-        }
+## 📖 Project Overview
 
-        /* Fade animation */
-        .fade-in {
-            animation: fadeIn 0.4s ease-in-out;
-        }
+Election Guider is an intelligent web application designed to simplify the Indian election process for voters. It provides comprehensive information about candidates, parties, voting procedures, polling stations, and post-election processes. Built with a professional, modern UI and powered by AI, it ensures citizens are well-informed and confident in their electoral participation.
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
+**Key Focus:** Indian Election System (ECI, EVMs, Lok Sabha, post-election processes)
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+---
 
-        /* Typing dots */
-        .typing span {
-            animation: blink 1.4s infinite;
-        }
+## ✨ Features
 
-        .typing span:nth-child(2) {
-            animation-delay: .2s;
-        }
+### 🎯 Core Features
+- **Candidate Information**: Access detailed profiles of candidates including party affiliation, background, and past performance
+- **Election Calendar**: Track important dates - nomination periods, voting days, results declaration
+- **Polling Station Locator**: Find your designated polling station based on registered address
+- **Voting Procedures Guide**: Step-by-step guidance on how to vote, Voter ID requirements, and absentee voting
+- **FAQs & Resources**: Comprehensive FAQ section for common election-related queries
 
-        .typing span:nth-child(3) {
-            animation-delay: .4s;
-        }
+### 🎨 Professional UI/UX Enhancements
+- **Color Palette**: Deep Navy Blue (trust/authority), Saffron/Orange accents (vibrancy), crisp whites/light grays
+- **Glassmorphism Effects**: Modern modals with soft shadows and transparency
+- **Smooth Micro-animations**: Engaging hover states and smooth transitions
+- **Responsive Design**: Fully responsive interface for all devices
+- **Modern Typography**: Highly readable font combinations for better user experience
 
-        @keyframes blink {
+### 📚 Interactive Flashcards
+- **3D Flippable Cards**: Animated card flip effects using CSS transforms
+- **Election Terminology**: Learn key terms like "EVM", "VVPAT", "Model Code of Conduct", "Hung Assembly", "Coalition Government"
+- **Quick Learning**: Perfect for voters preparing for elections
 
-            0%,
-            80%,
-            100% {
-                opacity: 0;
-            }
+### 📅 Election Timeline
+- **Pre-Election Phase**: Campaign periods, nomination submission
+- **Voting Phase**: Election day schedule
+- **Post-Election Phase**: Counting, government formation, oath-taking
+- **Results Phase**: Final results and seat allocation
 
-            40% {
-                opacity: 1;
-            }
-        }
+### 🔐 Security & Backend
+- **Secure API**: Backend /api/chat endpoint protects API keys
+- **Mock Authentication**: Firebase integration support with testing bypass
+- **User Data Protection**: Encrypted data transmission and storage
 
-        /* Button hover */
-        .btn:hover {
-            transform: scale(1.05);
-            transition: 0.2s;
-        }
+---
 
-        #chatBox {
-            scroll-behavior: smooth;
-        }
-    </style>
-</head>
+## 🚀 Getting Started
 
-<body class="bg-gradient-to-br from-blue-100 to-gray-200 min-h-screen">
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
+- Git
 
-    <div class="max-w-3xl mx-auto mt-10 bg-white shadow-xl rounded-2xl p-4 fade-in">
+### Installation
 
-        <h1 class="text-3xl font-bold text-center mb-4 text-blue-600">
-            🗳️ ElectionGuide AI
-        </h1>
+1. Clone the Repository
+   git clone https://github.com/shashankjicm06-del/Election-Guider.git
+   cd Election-Guider
 
-        <div id="chatBox" class="h-96 overflow-y-auto border p-3 mb-3 rounded-lg bg-gray-50"></div>
+2. Install Dependencies
+   npm install
 
-        <div class="flex gap-2">
-            <input id="userInput"
-                class="flex-1 border p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                placeholder="Ask about elections..." />
-            <button onclick="sendMessage()" class="bg-blue-500 text-white px-4 rounded-lg btn">
-                Send
-            </button>
-        </div>
+3. Create Environment Variables
+   cp .env.example .env
 
-        <div class="mt-4 flex gap-2 flex-wrap">
-            <button onclick="quickAsk('Explain election process')" class="bg-gray-200 px-3 py-1 rounded-lg btn">Election
-                Process</button>
+4. Start the Development Server
+   npm start
 
-            <button onclick="quickAsk('How to vote in India')" class="bg-gray-200 px-3 py-1 rounded-lg btn">How to
-                Vote</button>
+---
 
-            <button onclick="quickAsk('What is voter eligibility')"
-                class="bg-gray-200 px-3 py-1 rounded-lg btn">Eligibility</button>
+## 📁 Project Structure
 
-            <button onclick="quickAsk('Explain election timeline')"
-                class="bg-gray-200 px-3 py-1 rounded-lg btn">Timeline</button>
-        </div>
+Election-Guider/
+├── src/
+│   ├── components/
+│   │   ├── Header.js              # Navigation header
+│   │   ├── ChatInterface.js        # AI chat component
+│   │   ├── Flashcards.js           # Interactive flashcards feature
+│   │   ├── ElectionTimeline.js     # Timeline visualization
+│   │   └── QuickActions.js         # Quick action buttons
+│   ├── pages/
+│   ├── services/
+│   ├── utils/
+│   └── App.js
+├── public/
+├── server/
+│   └── server.js                   # Node.js backend server
+├── docker/
+│   ├── Dockerfile
+│   └── .dockerignore
+├── .env.example
+├── package.json
+├── README.md
+└── LICENSE
 
-    </div>
+---
 
-    <script>
-        const chatBox = document.getElementById("chatBox");
+## ⚙️ Configuration
 
-        // 🧠 Smart fake AI responses
-        function getResponse(message) {
-            message = message.toLowerCase();
+Update server/server.js with the system prompt for Indian election expertise.
+Create a .env file with your API keys and configuration.
 
-            if (message.includes("process")) {
-                return `Election Process:
-1. Voter Registration
-2. Candidate Nomination
-3. Campaigning
-4. Voting Day
-5. Vote Counting
-6. Result Declaration`;
-            }
+---
 
-            if (message.includes("vote")) {
-                return `How to Vote:
-1. Check your eligibility (18+ citizen)
-2. Register as a voter
-3. Get your Voter ID
-4. Visit polling booth
-5. Cast your vote using EVM`;
-            }
+## 🐳 Docker & Cloud Run Deployment
 
-            if (message.includes("eligibility")) {
-                return `Voter Eligibility:
-- Must be 18 years or older
-- Must be a citizen
-- Should be registered in electoral roll`;
-            }
+Build Docker image:
+gcloud builds submit --tag gcr.io/[PROJECT_ID]/election-guider
 
-            if (message.includes("timeline")) {
-                return `Election Timeline:
-- Announcement
-- Nomination filing
-- Campaign period
-- Voting day
-- Counting day
-- Results`;
-            }
+Deploy to Cloud Run:
+gcloud run deploy election-guider --image gcr.io/[PROJECT_ID]/election-guider --platform managed --region us-central1
 
-            return `Elections are democratic processes where people choose their leaders by voting.
+---
 
-You can ask about:
-• Election process
-• Voting steps
-• Eligibility
-• Timeline`;
-        }
+## 🧪 Testing Checklist
 
-        // ✨ Add message
-        function addMessage(message, sender) {
-            const div = document.createElement("div");
-            div.className = sender === "user"
-                ? "text-right mb-2 fade-in"
-                : "text-left mb-2 fade-in";
+- Run server locally and verify professional theme
+- Test flashcard animations
+- Test election timeline
+- Test chat integration with backend
+- Verify API key protection
+- Test responsive design
+- Verify Docker build
+- Test Cloud Run deployment
 
-            div.innerHTML = `
-    <span class="inline-block px-3 py-2 rounded-lg 
-    ${sender === "user" ? "bg-blue-500 text-white" : "bg-gray-300"}">
-      ${message.replace(/\n/g, "<br>")}
-    </span>
-  `;
+---
 
-            chatBox.appendChild(div);
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
+## 🔒 Security Features
 
-        // ✨ Typing effect
-        function typeEffect(text) {
-            let i = 0;
+- API Key Protection
+- Data Encryption
+- User Authentication
+- Environment Variables
+- CORS Configuration
 
-            const div = document.createElement("div");
-            div.className = "text-left mb-2 fade-in";
+---
 
-            const span = document.createElement("span");
-            span.className = "inline-block px-3 py-2 rounded-lg bg-gray-300";
+## 📝 API Endpoints
 
-            div.appendChild(span);
-            chatBox.appendChild(div);
+POST /api/chat
+Content-Type: application/json
+{ "message": "What is VVPAT?" }
 
-            function typing() {
-                if (i < text.length) {
-                    span.innerHTML += text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
-                    i++;
-                    setTimeout(typing, 15);
-                }
-            }
+---
 
-            typing();
-        }
+## 🤝 Contributing
 
-        // 🚀 Send message
-        function sendMessage() {
-            const input = document.getElementById("userInput");
-            const message = input.value.trim();
+Fork the repository, create a feature branch, make changes, commit, push, and open a pull request.
 
-            if (!message) return;
+---
 
-            addMessage(message, "user");
-            input.value = "";
+## 📄 License
 
-            // Loading animation
-            const loadingDiv = document.createElement("div");
-            loadingDiv.className = "text-left mb-2 fade-in";
-            loadingDiv.innerHTML = `
-    <span class="inline-block px-3 py-2 rounded-lg bg-gray-300 typing">
-      <span>.</span><span>.</span><span>.</span>
-    </span>
-  `;
-            chatBox.appendChild(loadingDiv);
+MIT License
 
-            setTimeout(() => {
-                chatBox.removeChild(loadingDiv);
+---
 
-                const reply = getResponse(message);
-                typeEffect(reply);
+## 👨‍💻 Author
 
-            }, 800);
-        }
+Shashank Jicm06
+GitHub: @shashankjicm06-del
 
-        // Quick buttons
-        function quickAsk(text) {
-            document.getElementById("userInput").value = text;
-            sendMessage();
-        }
-    </script>
+---
 
-</body>
-
-</html>
+Last Updated: 2026-05-02 09:09:28
+Empowering Indian voters with knowledge and technology 🇮🇳✨
